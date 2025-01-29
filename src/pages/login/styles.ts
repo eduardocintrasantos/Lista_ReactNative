@@ -43,12 +43,50 @@ export const style = StyleSheet.create({
         borderRadius: 40,
         marginTop: 10,
         borderWidth: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        backgroundColor:themas.colors.lightGray,
+        borderColor:themas.colors.lightGray
+    },
+    input: {
+        height: '100%',
+        width: '90%',
+        //backgroundColor: 'red',
+        borderRadius: 40,
     },
     boxBotton: {
         height: Dimensions.get('window').height/3,
         width: '100%',
-        
         //backgroundColor: 'blue'
+        alignItems:'center',
+        //justifyContent: 'center'
     },
+    button: {
+        width:200,
+        height:50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: themas.colors.primaty,
+        borderRadius: 40,
+        // gerador de box shadow react native
+        shadowColor: "#000000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity:  0.21,
+        shadowRadius: 7.68,
+        elevation: 10
+    },
+    textButton: {
+        fontSize: 16,
+        color: '#FFFF',
+        fontWeight: 'bold'
+    },
+    textBotton: {
+        color: themas.colors.gray,
+        fontSize: 14
+    },
+
 })
