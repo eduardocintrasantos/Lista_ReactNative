@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 
-import {Text, View, Image, TextInput, Button, TouchableOpacity} from "react-native"
+import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator} from "react-native"
 
 import { style } from "./styles";
 import Logo from '../../assets/check.png'
@@ -8,6 +8,32 @@ import {MaterialIcons} from '@expo/vector-icons'
 import { themas } from "../../global/themes";
 
 export default function Login (){
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [loading,setLoading] = useState(false);
+
+    async function getLogin() {
+        try {
+            setLoading(true)
+
+            if(!email || !password) {
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!')
+            }
+
+            setTimeout(()=> {
+                if(email == 'eduardo' && password == '123') {
+                    Alert.alert('Logado com sucesso!')
+                } else {
+                    Alert.alert('Email ou senha incorreto!')
+                }
+                setLoading(false)
+            }, 3000)
+
+        } catch(error) {
+            console.log(error)
+        } 
+    }
+
     return (
         <View style={style.container}>
             <View style={style.boxTop}>
@@ -17,7 +43,11 @@ export default function Login (){
             <View style={style.boxMid}>
                 <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
                 <View style={style.boxInput}>
-                    <TextInput style={style.input}></TextInput>   
+                    <TextInput 
+                        style={style.input} 
+                        value={email}
+                        onChangeText={(e)=>setEmail(e)}
+                    /> 
                     <MaterialIcons
                         name="email"
                         size={20}
@@ -27,7 +57,11 @@ export default function Login (){
                 </View>
                 <Text style={style.titleInput}>SENHA</Text>
                 <View style={style.boxInput}>
-                    <TextInput style={style.input}></TextInput>
+                    <TextInput 
+                        style={style.input}
+                        value={password}
+                        onChangeText={setPassword}
+                    />
                     <MaterialIcons 
                         name="password"
                         size={20}
@@ -36,8 +70,13 @@ export default function Login (){
                 </View>
             </View>
             <View style={style.boxBotton}>
-                <TouchableOpacity style={style.button}>
-                    <Text style={style.textButton}>Entrar</Text>
+                <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
+                    {
+                        loading?
+                            <ActivityIndicator color={'#FFF'} size={"small"}/>
+                        :
+                            <Text style={style.textButton}>Entrar</Text>
+                    }
                 </TouchableOpacity>
             </View>
             <Text style={style.textBotton}>Não tem conta? <Text style={{color:themas.colors.primaty}}>Crie agora</Text>.</Text>
