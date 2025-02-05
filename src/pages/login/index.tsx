@@ -7,6 +7,7 @@ import Logo from '../../assets/check.png'
 import {MaterialIcons, Octicons} from '@expo/vector-icons'
 import { themas } from "../../global/themes";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
 export default function Login (){
     const [email,setEmail] = useState('');
@@ -59,43 +60,13 @@ export default function Login (){
                     secureTextEntry={showPassword}
                     onIconRigthPress={()=>setShowPassword(!showPassword)}
                 />
-                {/* <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
-                <View style={style.boxInput}>
-                    <TextInput 
-                        style={style.input} 
-                        value={email}
-                        onChangeText={(e)=>setEmail(e)}
-                    /> 
-                    <MaterialIcons
-                        name="email"
-                        size={20}
-                        color={themas.colors.gray}
-                    />    
-
-                </View>
-                <Text style={style.titleInput}>SENHA</Text>
-                <View style={style.boxInput}>
-                    <TextInput 
-                        style={style.input}
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                    <MaterialIcons 
-                        name="password"
-                        size={20}
-                        color={themas.colors.gray}
-                    />
-                </View> */}
             </View>
             <View style={style.boxBotton}>
-                <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
-                    {
-                        loading?
-                            <ActivityIndicator color={'#FFF'} size={"small"}/>
-                        :
-                            <Text style={style.textButton}>Entrar</Text>
-                    }
-                </TouchableOpacity>
+                <Button 
+                    text="Entrar"
+                    loading={loading}
+                    onPress={() => getLogin()}
+                />
             </View>
             <Text style={style.textBotton}>Não tem conta? <Text style={{color:themas.colors.primaty}}>Crie agora</Text>.</Text>
         </View>
