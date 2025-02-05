@@ -10,11 +10,12 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
 export default function Login (){
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
+    const [email,setEmail] = useState('');          // Variavel para armazenar o email informado 
+    const [password,setPassword] = useState('');    // Variavel para armazenar o email informado 
     const [loading,setLoading] = useState(false);
-    const [showPassword,setShowPassword] = useState(true);
+    const [showPassword,setShowPassword] = useState(true);  // Variavel para a função de mostrar ou não a senha digitada
 
+    // Função que valida se o login e senha foram digitados, e se é igual a senha e email definidas
     async function getLogin() {
         try {
             setLoading(true)
@@ -58,14 +59,14 @@ export default function Login (){
                     IconRigth={Octicons}
                     iconRigthName={showPassword?"eye-closed":"eye"}
                     secureTextEntry={showPassword}
-                    onIconRigthPress={()=>setShowPassword(!showPassword)}
+                    onIconRigthPress={()=>setShowPassword(!showPassword)} 
                 />
             </View>
             <View style={style.boxBotton}>
                 <Button 
                     text="Entrar"
                     loading={loading}
-                    onPress={() => getLogin()}
+                    onPress={() => getLogin()}  // Quando clica no botão de login, valida as informações que estão na função getLogin
                 />
             </View>
             <Text style={style.textBotton}>Não tem conta? <Text style={{color:themas.colors.primaty}}>Crie agora</Text>.</Text>
