@@ -1,16 +1,18 @@
 import React, {useState} from "react";
 
-import {Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator} from "react-native"
+import {Text, View, Image, TouchableOpacity, Alert, ActivityIndicator} from "react-native"
 
 import { style } from "./styles";
 import Logo from '../../assets/check.png'
-import {MaterialIcons} from '@expo/vector-icons'
+import {MaterialIcons, Octicons} from '@expo/vector-icons'
 import { themas } from "../../global/themes";
+import { Input } from "../../components/Input";
 
 export default function Login (){
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [loading,setLoading] = useState(false);
+    const [showPassword,setShowPassword] = useState(true);
 
     async function getLogin() {
         try {
@@ -41,7 +43,23 @@ export default function Login (){
                 <Text style={style.titulo}>Bem vindo de volta!</Text>
             </View>
             <View style={style.boxMid}>
-                <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
+                <Input 
+                    value={email}
+                    onChangeText={setEmail}
+                    title="ENDEREÇO DE E-MAIL"
+                    IconRigth={MaterialIcons}
+                    iconRigthName="email"
+                />
+                <Input 
+                    value={password}
+                    onChangeText={setPassword}
+                    title="SENHA"
+                    IconRigth={Octicons}
+                    iconRigthName={showPassword?"eye-closed":"eye"}
+                    secureTextEntry={showPassword}
+                    onIconRigthPress={()=>setShowPassword(!showPassword)}
+                />
+                {/* <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
                 <View style={style.boxInput}>
                     <TextInput 
                         style={style.input} 
@@ -67,7 +85,7 @@ export default function Login (){
                         size={20}
                         color={themas.colors.gray}
                     />
-                </View>
+                </View> */}
             </View>
             <View style={style.boxBotton}>
                 <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
