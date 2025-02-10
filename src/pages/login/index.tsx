@@ -8,12 +8,16 @@ import {MaterialIcons, Octicons} from '@expo/vector-icons'
 import { themas } from "../../global/themes";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useNavigation, NavigationProp } from '@react-navigation/native'
 
 export default function Login (){
+
+    const navigation = useNavigation<NavigationProp<any>>();
+
     const [email,setEmail] = useState('');          // Variavel para armazenar o email informado 
     const [password,setPassword] = useState('');    // Variavel para armazenar o email informado 
     const [loading,setLoading] = useState(false);
-    const [showPassword,setShowPassword] = useState(true);  // Variavel para a função de mostrar ou não a senha digitada
+    const [showPassword,setShowPassword] = useState(true);  // Variavel para a função de mostrar ou não a senha digitada 
 
     // Função que valida se o login e senha foram digitados, e se é igual a senha e email definidas
     async function getLogin() {
@@ -27,6 +31,7 @@ export default function Login (){
             setTimeout(()=> {
                 if(email == 'eduardo' && password == '123') {
                     Alert.alert('Logado com sucesso!')
+                    navigation.navigate("BottomRoutes")
                 } else {
                     Alert.alert('Email ou senha incorreto!')
                 }
